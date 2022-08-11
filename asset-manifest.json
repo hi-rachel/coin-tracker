@@ -1,0 +1,11 @@
+{
+  "main.js": "/coin-tracker/static/js/main.aab9d147.chunk.js",
+  "main.js.map": "/coin-tracker/static/js/main.aab9d147.chunk.js.map",
+  "static/js/1.2376b898.chunk.js": "/coin-tracker/static/js/1.2376b898.chunk.js",
+  "static/js/1.2376b898.chunk.js.map": "/coin-tracker/static/js/1.2376b898.chunk.js.map",
+  "runtime~main.js": "/coin-tracker/static/js/runtime~main.d5c3c01a.js",
+  "runtime~main.js.map": "/coin-tracker/static/js/runtime~main.d5c3c01a.js.map",
+  "index.html": "/coin-tracker/index.html",
+  "precache-manifest.e24b4a8b5d7910e7cfa9905da4006189.js": "/coin-tracker/precache-manifest.e24b4a8b5d7910e7cfa9905da4006189.js",
+  "service-worker.js": "/coin-tracker/service-worker.js"
+}
