@@ -1,16 +1,21 @@
+import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import { useParams, Routes, Route } from "react-router-dom";
+import { useParams, Outlet, Link, useMatch } from "react-router-dom";
 import styled from "styled-components";
-import { Outlet } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi";
+// import { fetchCoinInfo, fetchCoinTickers } from "../api";
 
 const Container = styled.div`
   padding: 0 20px;
-  max-width: 500px;
+  max-width: 480px;
   margin: 0 auto;
+  margin-bottom: 30px;
 `;
 
 const Header = styled.header`
+  position: relative;
   margin-top: 30px;
   height: 15vh;
   display: flex;
@@ -21,19 +26,30 @@ const Header = styled.header`
 const Title = styled.h1`
   padding: 10px;
   font-size: 48px;
+  text-align: center;
   color: ${(props) => props.theme.accentColor};
+`;
+
+const BackBtn = styled.div`
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  width: 50px;
+  height: 50px;
+  color: ${(props) => props.theme.desColor};
 `;
 
 const Loader = styled.div`
   text-align: center;
   font-size: 40px;
+  color: ${(props) => props.theme.tabColor};
 `;
 
 const CoinInfo = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: #fff;
-  color: black;
+  background-color: ${(props) => props.theme.tabColor};
+  color: ${(props) => props.theme.textColor};
   padding: 15px 20px;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -63,6 +79,28 @@ const Img = styled.img`
   width: 35px;
   height: 35px;
   margin-right: 10px;
+`;
+
+const Tabs = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 25px 0px;
+  gap: 10px;
+`;
+
+const Tab = styled.span<{ isActive: boolean }>`
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: ${(props) => props.theme.tabColor};
+  border-radius: 10px;
+  color: ${(props) =>
+    props.isActive ? props.theme.accentColor : props.theme.textColor};
+  a {
+    padding: 7px 0px;
+    display: block;
+  }
 `;
 
 interface NameState {
@@ -129,10 +167,20 @@ interface PriceData {
 }
 
 function Coin() {
-  const [loading, setLoading] = useState(true);
   const { coinId } = useParams();
-  const { coinSymbol } = useParams();
   const { state } = useLocation() as RouteState;
+  const priceMatch = useMatch("/:coinId/price");
+  const chartMatch = useMatch("/:coinId/chart");
+  // const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(
+  //   ["info", coinId],
+  //   () => fetchCoinInfo(coinId!)
+  // );
+  // const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
+  //   ["tickers", coinId],
+  //   () => fetchCoinTickers(coinId!)
+  // );
+  // const loading = infoLoading || tickersLoading;
+  const [loading, setLoading] = useState(true);
   const [info, setInfo] = useState<InfoData>();
   const [priceInfo, setPriceInfo] = useState<PriceData>();
   useEffect(() => {
@@ -140,11 +188,9 @@ function Coin() {
       const infoData = await (
         await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)
       ).json();
-      console.log(infoData);
       const priceData = await (
         await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
       ).json();
-      console.log(priceData);
       setInfo(infoData);
       setPriceInfo(priceData);
       setLoading(false);
@@ -152,27 +198,52 @@ function Coin() {
   }, []);
   return (
     <Container>
+      <Helmet>
+        <title>
+          {state ? (
+            state.name
+          ) : loading ? (
+            <Loader>"Loading..."</Loader>
+          ) : info ? (
+            info.name
+          ) : null}
+        </title>
+      </Helmet>
       <Header>
-        <Title>{state ? state.name : "Loading..."}</Title>
+        <Link to={"/"}>
+          <BackBtn>
+            <BiArrowBack size="20" />
+          </BackBtn>
+        </Link>
+        <Title>
+          {state
+            ? state.name
+            : loading
+            ? "Loading..."
+            : info
+            ? info.name
+            : null}
+        </Title>
       </Header>
-      {loading ? <Loader>Loading...</Loader> : null}
       {loading ? (
-        <Loader>...</Loader>
+        <Loader>Loading...</Loader>
       ) : (
         <>
-          <Description>{info ? info.description : "not found"}</Description>
+          <Description>{info ? info.description : null}</Description>
           <CoinInfo>
             <CoinInfoDetails>
               <span>Rank: </span>
-              <span>{info ? info.rank : "not found"}</span>
+              <span>{info ? info.rank : ""}</span>
             </CoinInfoDetails>
             <CoinInfoDetails>
               <span>Symbol: </span>
               <span>{info ? info.symbol : "not found"}</span>
             </CoinInfoDetails>
             <CoinInfoDetails>
-              <span>Open Source: </span>
-              <span>{info ? (info.open_source ? "Yes" : "No") : null}</span>
+              <span>Price: </span>
+              <span>
+                {priceInfo ? priceInfo.quotes.USD.price.toFixed(2) : null}
+              </span>
             </CoinInfoDetails>
           </CoinInfo>
           <CoinInfo>
@@ -186,10 +257,22 @@ function Coin() {
               <span>Max Supply: </span>
               <span>{priceInfo ? priceInfo.max_supply : "not found"}</span>
             </CoinInfoDetails>
+            <CoinInfoDetails>
+              <span>Open Source: </span>
+              <span>{info ? (info.open_source ? "Yes" : "No") : null}</span>
+            </CoinInfoDetails>
           </CoinInfo>
         </>
       )}
-      <Outlet />
+      <Tabs>
+        <Tab isActive={chartMatch !== null}>
+          <Link to={`/${coinId}/chart`}>Chart</Link>
+        </Tab>
+        <Tab isActive={priceMatch !== null}>
+          <Link to={`/${coinId}/price`}>Price</Link>
+        </Tab>
+      </Tabs>
+      <Outlet context={{ coinId }} />
     </Container>
   );
 }

@@ -1,11 +1,19 @@
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { fetchCoins } from "../api";
+import { Helmet } from "react-helmet";
+import { isLightAtom } from "../App";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { BsMoonStarsFill } from "react-icons/bs";
+import { BsFillSunFill } from "react-icons/bs";
 
 const Container = styled.div`
   padding: 0 20px;
   max-width: 480px;
   margin: 0 auto;
+  margin-bottom: 30px;
 `;
 
 const Header = styled.header`
@@ -19,8 +27,8 @@ const Header = styled.header`
 const CoinsList = styled.ul``;
 
 const Coin = styled.li`
-  background-color: white;
-  color: ${(props) => props.theme.bgColor};
+  background-color: ${(props) => props.theme.tabColor};
+  color: ${(props) => props.theme.textColor};
   border-radius: 15px;
   margin-bottom: 10px;
   a {
@@ -44,6 +52,7 @@ const Title = styled.h1`
 const Loader = styled.div`
   text-align: center;
   font-size: 40px;
+  color: ${(props) => props.theme.tabColor};
 `;
 
 const Img = styled.img`
@@ -52,7 +61,7 @@ const Img = styled.img`
   margin-right: 10px;
 `;
 
-interface CoinInterface {
+interface ICoin {
   id: string;
   name: string;
   symbol: string;
@@ -62,36 +71,71 @@ interface CoinInterface {
   type: string;
 }
 
+export const Toggle = styled.div`
+  position: fixed;
+  top: 30px;
+  left: 30px;
+`;
+
+export const ToggleBtn = styled.div`
+  width: 50px;
+  height: 50px;
+`;
+
 function Coins() {
-  const [coins, setcoins] = useState<CoinInterface[]>([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    (async () => {
-      const response = await fetch("https://api.coinpaprika.com/v1/coins");
-      const json = await response.json();
-      setcoins(json.slice(0, 100));
-      setLoading(false);
-    })();
-  }, []);
+  const { isLoading, data } = useQuery<ICoin[]>(["allCoins"], fetchCoins);
+  const isLight = useRecoilValue(isLightAtom);
+  const setlightAtom = useSetRecoilState(isLightAtom);
+  const togglelightAtom = () => setlightAtom((prevMode) => !prevMode);
+  // const [coins, setcoins] = useState<ICoin[]>([]);
+  // const [loading, setLoading] = useState(true);
+  // useEffect(() => {
+  //   (async () => {
+  //     const response = await fetch("https://api.coinpaprika.com/v1/coins");
+  //     const json = await response.json();
+  //     setcoins(json.slice(0, 100));
+  //     setLoading(false);
+  //   })();
+  // }, []);
   return (
     <Container>
+      <Helmet>
+        <title>Coins</title>
+      </Helmet>
       <Header>
         <Title>Coins</Title>
       </Header>
-      {loading ? (
+      <Toggle>
+        {isLight ? (
+          <ToggleBtn onClick={togglelightAtom}>
+            <Link to={"/"}>
+              <BsMoonStarsFill size={"30px"} color={"#1C1A27"} />
+            </Link>
+          </ToggleBtn>
+        ) : (
+          <ToggleBtn onClick={togglelightAtom}>
+            <Link to={"/"}>
+              <BsFillSunFill size={"30px"} color={"#ffcb00"} />
+            </Link>
+          </ToggleBtn>
+        )}
+      </Toggle>
+      {isLoading ? (
         <Loader>"Loading..."</Loader>
       ) : (
         <CoinsList>
-          {coins.map((coin) => (
-            <Coin key={coin.id}>
-              <Link to={`/${coin.id}`} state={{ name: coin.name }}>
-                <Img
-                  src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
-                />
-                {coin.name} &rarr;
-              </Link>
-            </Coin>
-          ))}
+          {data
+            ? data.slice(0, 100).map((coin) => (
+                <Coin key={coin.id}>
+                  <Link to={`/${coin.id}`} state={{ name: coin.name }}>
+                    <Img
+                      src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
+                    />
+                    {coin.name} &rarr;
+                  </Link>
+                </Coin>
+              ))
+            : true}
         </CoinsList>
       )}
     </Container>
