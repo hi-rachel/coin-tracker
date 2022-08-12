@@ -35,7 +35,7 @@ const PriceDetailLi = styled.div`
   display: flex;
   gap: 10px;
   flex-direction: row;
-  padding-left: 60px;
+  padding-left: 25px;
   align-items: center;
 `;
 
