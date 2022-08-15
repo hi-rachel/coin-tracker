@@ -1,11 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { useParams, Outlet, Link, useMatch } from "react-router-dom";
 import styled from "styled-components";
 import { BiArrowBack } from "react-icons/bi";
-// import { fetchCoinInfo, fetchCoinTickers } from "../api";
 
 const Container = styled.div`
   padding: 0 20px;
@@ -171,15 +169,6 @@ function Coin() {
   const { state } = useLocation() as RouteState;
   const priceMatch = useMatch("/:coinId/price");
   const chartMatch = useMatch("/:coinId/chart");
-  // const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(
-  //   ["info", coinId],
-  //   () => fetchCoinInfo(coinId!)
-  // );
-  // const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
-  //   ["tickers", coinId],
-  //   () => fetchCoinTickers(coinId!)
-  // );
-  // const loading = infoLoading || tickersLoading;
   const [loading, setLoading] = useState(true);
   const [info, setInfo] = useState<InfoData>();
   const [priceInfo, setPriceInfo] = useState<PriceData>();

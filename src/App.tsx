@@ -5,7 +5,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { darkTheme, lightTheme } from "./theme";
 import { ThemeProvider } from "styled-components";
 import { useRecoilValue } from "recoil";
-import { atom } from "recoil";
 import { isLightAtom } from "./atoms";
 
 const GlobalStyle = createGlobalStyle`
@@ -72,8 +71,6 @@ a {
 `;
 
 function App() {
-  // const [isDark, setIsDark] = useState(false);
-  // const toggleDark = () => setIsDark((current) => !current);
   const toggle = useRecoilValue(isLightAtom);
   return (
     <>

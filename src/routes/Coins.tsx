@@ -86,7 +86,7 @@ function Coins() {
   const { isLoading, data } = useQuery<ICoin[]>(["allCoins"], fetchCoins);
   const isLight = useRecoilValue(isLightAtom);
   const setlightAtom = useSetRecoilState(isLightAtom);
-  const togglelightAtom = () => setlightAtom((prevMode) => !prevMode);
+  const togglelightAtom = () => setlightAtom((prev) => !prev);
   return (
     <Container>
       <Helmet>
