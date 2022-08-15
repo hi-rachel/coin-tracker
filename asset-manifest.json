@@ -1,11 +1,11 @@
 {
-  "main.js": "/coin-tracker/static/js/main.c05e5552.chunk.js",
-  "main.js.map": "/coin-tracker/static/js/main.c05e5552.chunk.js.map",
+  "main.js": "/coin-tracker/static/js/main.931352c0.chunk.js",
+  "main.js.map": "/coin-tracker/static/js/main.931352c0.chunk.js.map",
   "runtime~main.js": "/coin-tracker/static/js/runtime~main.3a9257fd.js",
   "runtime~main.js.map": "/coin-tracker/static/js/runtime~main.3a9257fd.js.map",
-  "static/js/2.360c845c.chunk.js": "/coin-tracker/static/js/2.360c845c.chunk.js",
-  "static/js/2.360c845c.chunk.js.map": "/coin-tracker/static/js/2.360c845c.chunk.js.map",
+  "static/js/2.60fef82e.chunk.js": "/coin-tracker/static/js/2.60fef82e.chunk.js",
+  "static/js/2.60fef82e.chunk.js.map": "/coin-tracker/static/js/2.60fef82e.chunk.js.map",
   "index.html": "/coin-tracker/index.html",
-  "precache-manifest.8e837304b0b175b956e83b46c64c7933.js": "/coin-tracker/precache-manifest.8e837304b0b175b956e83b46c64c7933.js",
+  "precache-manifest.68945417ccb07e9ec7fc51cb1353f5e7.js": "/coin-tracker/precache-manifest.68945417ccb07e9ec7fc51cb1353f5e7.js",
   "service-worker.js": "/coin-tracker/service-worker.js"
 }
