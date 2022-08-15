@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCoins } from "../api";
 import { Helmet } from "react-helmet";
-import { isLightAtom } from "../App";
+import { isLightAtom } from "../atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { BsMoonStarsFill } from "react-icons/bs";
 import { BsFillSunFill } from "react-icons/bs";
@@ -87,16 +87,6 @@ function Coins() {
   const isLight = useRecoilValue(isLightAtom);
   const setlightAtom = useSetRecoilState(isLightAtom);
   const togglelightAtom = () => setlightAtom((prevMode) => !prevMode);
-  // const [coins, setcoins] = useState<ICoin[]>([]);
-  // const [loading, setLoading] = useState(true);
-  // useEffect(() => {
-  //   (async () => {
-  //     const response = await fetch("https://api.coinpaprika.com/v1/coins");
-  //     const json = await response.json();
-  //     setcoins(json.slice(0, 100));
-  //     setLoading(false);
-  //   })();
-  // }, []);
   return (
     <Container>
       <Helmet>

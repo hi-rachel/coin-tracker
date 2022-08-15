@@ -8,6 +8,8 @@ import { fetchCoinHistory } from "./api";
 import ReactApexChart from "react-apexcharts";
 import styled from "styled-components";
 import { BsCoin } from "react-icons/bs";
+import { useRecoilValue } from "recoil";
+import { isLightAtom } from "./atoms";
 
 function Router() {
   return (
@@ -102,9 +104,8 @@ interface PriceData {
 }
 
 function Chart() {
-  // const params = useParams();
-  // console.log(params);
   const { coinId } = useOutletContext<CharProps>();
+  const isLight = useRecoilValue(isLightAtom);
   const { isLoading: historyLoading, data: chartData } = useQuery<IDate[]>(
     ["ohlcv", coinId],
     () => fetchCoinHistory(coinId),
@@ -136,6 +137,9 @@ function Chart() {
             },
           ]}
           options={{
+            theme: {
+              mode: isLight ? "light" : "dark",
+            },
             chart: {
               height: 300,
               width: 500,

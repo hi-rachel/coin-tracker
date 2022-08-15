@@ -1,11 +1,12 @@
 import Router from "./Router";
-import React from "react";
+import React, { useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { darkTheme, lightTheme } from "./theme";
 import { ThemeProvider } from "styled-components";
 import { useRecoilValue } from "recoil";
 import { atom } from "recoil";
+import { isLightAtom } from "./atoms";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -70,12 +71,9 @@ a {
 }
 `;
 
-export const isLightAtom = atom({
-  key: "isLight",
-  default: false,
-});
-
 function App() {
+  // const [isDark, setIsDark] = useState(false);
+  // const toggleDark = () => setIsDark((current) => !current);
   const toggle = useRecoilValue(isLightAtom);
   return (
     <>
