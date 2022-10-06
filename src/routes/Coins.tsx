@@ -18,10 +18,11 @@ const Container = styled.div`
 
 const Header = styled.header`
   margin-top: 30px;
+  margin-bottom: 20px;
   height: 15vh;
   display: flex;
   justify-content: center;
-  align-item: center;
+  align-items: center;
 `;
 
 const CoinsList = styled.ul``;
@@ -30,7 +31,10 @@ const Coin = styled.li`
   background-color: ${(props) => props.theme.tabColor};
   color: ${(props) => props.theme.textColor};
   border-radius: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  box-shadow: rgba(136, 165, 191, 0.48) 3px 2px 12px 0px,
+    rgba(255, 255, 255, 0.8) -3px -2px 12px 0px;
+
   a {
     display: flex;
     align-items: center;
@@ -40,13 +44,24 @@ const Coin = styled.li`
   &:hover {
     a {
       color: ${(props) => props.theme.accentColor};
+      font-size: 18px;
+      font-weight: 600;
+      transition: color 0.2s ease-out;
+      padding: 17px;
+    }
+    img {
+      width: 41px;
+      height: 41px;
+    }
+    li {
+      background-color: ${(props) => props.theme.accentColor};
     }
   }
 `;
 
 const Title = styled.h1`
-  font-size: 48px;
-  color: ${(props) => props.theme.accentColor};
+  font-size: 50px;
+  color: ${(props) => props.theme.titleColor};
 `;
 
 const Loader = styled.div`
@@ -73,8 +88,8 @@ interface ICoin {
 
 export const Toggle = styled.div`
   position: fixed;
-  top: 30px;
-  left: 30px;
+  top: 35px;
+  left: 35px;
 `;
 
 export const ToggleBtn = styled.div`
@@ -90,10 +105,10 @@ function Coins() {
   return (
     <Container>
       <Helmet>
-        <title>Coins</title>
+        <title>{`Coins`}</title>
       </Helmet>
       <Header>
-        <Title>Coins</Title>
+        <Title>Coin List</Title>
       </Header>
       <Toggle>
         {isLight ? (
@@ -105,7 +120,7 @@ function Coins() {
         ) : (
           <ToggleBtn onClick={togglelightAtom}>
             <Link to={"/"}>
-              <BsFillSunFill size={"30px"} color={"#ffcb00"} />
+              <BsFillSunFill size={"30px"} color={"#ED5E93"} />
             </Link>
           </ToggleBtn>
         )}

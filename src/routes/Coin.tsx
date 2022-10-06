@@ -18,14 +18,16 @@ const Header = styled.header`
   height: 15vh;
   display: flex;
   justify-content: center;
-  align-item: center;
+  align-items: center;
 `;
 
 const Title = styled.h1`
+  margin-top: 20px;
+  margin-bottom: 20px;
   padding: 10px;
   font-size: 48px;
   text-align: center;
-  color: ${(props) => props.theme.accentColor};
+  color: ${(props) => props.theme.titleColor};
 `;
 
 const BackBtn = styled.div`
@@ -38,19 +40,25 @@ const BackBtn = styled.div`
 `;
 
 const Loader = styled.div`
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   font-size: 40px;
-  color: ${(props) => props.theme.tabColor};
+  color: ${(props) => props.theme.desColor};
 `;
 
 const CoinInfo = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: ${(props) => props.theme.tabColor};
-  color: ${(props) => props.theme.textColor};
+  background-color: ${(props) => props.theme.accentColor};
+  color: ${(props) => props.theme.desColor};
   padding: 15px 20px;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  box-shadow: rgb(85, 91, 255) 0px 0px 0px 3px, rgb(31, 193, 27) 0px 0px 0px 6px,
+    rgb(255, 217, 19) 0px 0px 0px 9px, rgb(255, 156, 85) 0px 0px 0px 12px,
+    rgb(255, 85, 85) 0px 0px 0px 15px;
 `;
 
 const CoinInfoDetails = styled.div`
@@ -68,9 +76,11 @@ const CoinInfoDetails = styled.div`
 
 const Description = styled.p`
   color: ${(props) => props.theme.desColor};
+  margin-top: 25px;
   margin-bottom: 25px;
   font-size: 18px;
-  line-height: 1.5;
+  line-height: 1.8;
+  text-align: justify;
 `;
 
 const Img = styled.img`
@@ -90,11 +100,11 @@ const Tab = styled.span<{ isActive: boolean }>`
   text-align: center;
   text-transform: uppercase;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 500;
   background-color: ${(props) => props.theme.tabColor};
   border-radius: 10px;
   color: ${(props) =>
-    props.isActive ? props.theme.accentColor : props.theme.textColor};
+    props.isActive ? props.theme.selectColor : props.theme.textColor};
   a {
     padding: 7px 0px;
     display: block;
@@ -189,13 +199,13 @@ function Coin() {
     <Container>
       <Helmet>
         <title>
-          {state ? (
+          {`state ? (
             state.name
           ) : loading ? (
             <Loader>"Loading..."</Loader>
           ) : info ? (
             info.name
-          ) : null}
+          ) : null`}
         </title>
       </Helmet>
       <Header>

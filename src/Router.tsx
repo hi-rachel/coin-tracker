@@ -7,7 +7,6 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchCoinHistory } from "./api";
 import ReactApexChart from "react-apexcharts";
 import styled from "styled-components";
-import { BsCoin } from "react-icons/bs";
 import { useRecoilValue } from "recoil";
 import { isLightAtom } from "./atoms";
 
@@ -31,14 +30,15 @@ const PriceDetailUl = styled.div`
   gap: 18px;
   color: ${(props) => props.theme.desColor};
   font-size: 18px;
+  letter-spacing: 1.2px;
 `;
 
 const PriceDetailLi = styled.div`
   display: flex;
+  justify-content: space-around;
   gap: 10px;
   flex-direction: row;
-  padding-left: 25px;
-  align-items: center;
+  text-align: left;
 `;
 
 interface CharProps {
@@ -161,8 +161,8 @@ function Chart() {
             plotOptions: {
               candlestick: {
                 colors: {
-                  upward: "#EB1D36",
-                  downward: "#3330E4",
+                  upward: "#ff2e7b",
+                  downward: "#322eff",
                 },
               },
             },
@@ -173,54 +173,6 @@ function Chart() {
             },
           }}
         />
-        //line Chart
-        // <ApexChart
-        //   type="line"
-        //   series={[
-        //     {
-        //       name: "Price",
-        //       data: data!.map((price) => price.close),
-        //     },
-        //   ]}
-        //   options={{
-        //     theme: {
-        //       mode: "dark",
-        //     },
-        //     chart: {
-        //       height: 300,
-        //       width: 500,
-        //       toolbar: {
-        //         show: false,
-        //       },
-        //       background: "transparent",
-        //     },
-        //     grid: { show: false },
-        //     stroke: {
-        //       curve: "smooth",
-        //       width: 4,
-        //     },
-        //     yaxis: {
-        //       show: false,
-        //     },
-        //     xaxis: {
-        //       axisBorder: { show: false },
-        //       axisTicks: { show: false },
-        //       labels: { show: false },
-        //       type: "datetime",
-        //       categories: data!.map((price) => price.time_close),
-        //     },
-        //     fill: {
-        //       type: "gradient",
-        //       gradient: { gradientToColors: ["blue"], stops: [0, 100] },
-        //     },
-        //     colors: ["red"],
-        //     tooltip: {
-        //       y: {
-        //         formatter: (value) => `$ ${value}`,
-        //       },
-        //     },
-        //   }}
-        // />
       )}
     </div>
   );
@@ -252,23 +204,19 @@ function Price() {
         <>
           <PriceDetailUl>
             <PriceDetailLi>
-              <BsCoin size={"20"} color={"#ffcb00"} />
-              All Time High Price : ${" "}
+              🌈 All Time High Price : ${" "}
               {priceInfo ? priceInfo.quotes.USD.ath_price.toFixed(3) : null}
             </PriceDetailLi>
             <PriceDetailLi>
-              <BsCoin size={"20"} color={"#ffcb00"} />
-              Market Cap : ${" "}
+              💰 Market Cap : ${" "}
               {priceInfo ? priceInfo.quotes.USD.market_cap : null}
             </PriceDetailLi>
             <PriceDetailLi>
-              <BsCoin size={"20"} color={"#ffcb00"} />
-              Percent from ATH Price :{" "}
+              💸 Percent from ATH Price :{" "}
               {priceInfo ? priceInfo.quotes.USD.percent_from_price_ath : null} %
             </PriceDetailLi>
             <PriceDetailLi>
-              <BsCoin size={"20"} color={"#ffcb00"} />
-              Volume(24h) :{" "}
+              ⛏ Volume(24h) :{" "}
               {priceInfo ? priceInfo.quotes.USD.volume_24h.toFixed(3) : null}
             </PriceDetailLi>
           </PriceDetailUl>
