@@ -27,7 +27,6 @@ const Title = styled.h1`
   padding: 10px;
   font-size: 48px;
   text-align: center;
-  color: ${(props) => props.theme.titleColor};
 `;
 
 const BackBtn = styled.div`
@@ -43,7 +42,7 @@ const Loader = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
   text-align: center;
-  font-size: 40px;
+  font-size: 20px;
   color: ${(props) => props.theme.desColor};
 `;
 
@@ -78,7 +77,7 @@ const Description = styled.p`
   color: ${(props) => props.theme.desColor};
   margin-top: 25px;
   margin-bottom: 25px;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 1.8;
   text-align: justify;
 `;
@@ -202,7 +201,7 @@ function Coin() {
           {`state ? (
             state.name
           ) : loading ? (
-            <Loader>"Loading..."</Loader>
+            <Loader>Loading...</Loader>
           ) : info ? (
             info.name
           ) : null`}

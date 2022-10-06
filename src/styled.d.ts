@@ -8,6 +8,5 @@ declare module "styled-components" {
     selectColor: string;
     desColor: string;
     tabColor: string;
-    titleColor: string;
   }
 }

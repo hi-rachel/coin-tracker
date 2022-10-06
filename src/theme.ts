@@ -7,15 +7,13 @@ export const darkTheme: DefaultTheme = {
   selectColor: "#ED5E93",
   desColor: "#FFF5F9",
   tabColor: "#fff",
-  titleColor: "#ED5E93",
 };
 
 export const lightTheme: DefaultTheme = {
-  bgColor: "#F7F5DD",
+  bgColor: "#fff",
   textColor: "#222",
   accentColor: "#FCE2DB",
   selectColor: "#ED5372",
   desColor: "#222",
-  tabColor: "#fff",
-  titleColor: "#222",
+  tabColor: "#F7F5DD",
 };

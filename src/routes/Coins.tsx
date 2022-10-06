@@ -18,8 +18,8 @@ const Container = styled.div`
 
 const Header = styled.header`
   margin-top: 30px;
-  margin-bottom: 20px;
-  height: 15vh;
+  margin-bottom: 30px;
+  padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,7 +43,7 @@ const Coin = styled.li`
   }
   &:hover {
     a {
-      color: ${(props) => props.theme.accentColor};
+      color: ${(props) => props.theme.selectColor};
       font-size: 18px;
       font-weight: 600;
       transition: color 0.2s ease-out;
@@ -61,12 +61,11 @@ const Coin = styled.li`
 
 const Title = styled.h1`
   font-size: 50px;
-  color: ${(props) => props.theme.titleColor};
 `;
 
 const Loader = styled.div`
   text-align: center;
-  font-size: 40px;
+  font-size: 30px;
   color: ${(props) => props.theme.tabColor};
 `;
 
@@ -120,13 +119,13 @@ function Coins() {
         ) : (
           <ToggleBtn onClick={togglelightAtom}>
             <Link to={"/"}>
-              <BsFillSunFill size={"30px"} color={"#ED5E93"} />
+              <BsFillSunFill size={"30px"} color={"rgb(255, 217, 19)"} />
             </Link>
           </ToggleBtn>
         )}
       </Toggle>
       {isLoading ? (
-        <Loader>"Loading..."</Loader>
+        <Loader>Loading...</Loader>
       ) : (
         <CoinsList>
           {data

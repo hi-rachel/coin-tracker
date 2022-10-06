@@ -29,13 +29,14 @@ const PriceDetailUl = styled.div`
   flex-direction: column;
   gap: 18px;
   color: ${(props) => props.theme.desColor};
-  font-size: 18px;
-  letter-spacing: 1.2px;
+  font-size: 15px;
+  padding: 10px;
+  font-weight: 500;
 `;
 
 const PriceDetailLi = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   gap: 10px;
   flex-direction: row;
   text-align: left;
@@ -161,8 +162,8 @@ function Chart() {
             plotOptions: {
               candlestick: {
                 colors: {
-                  upward: "#ff2e7b",
-                  downward: "#322eff",
+                  upward: "#fe1050",
+                  downward: "#2a26fc",
                 },
               },
             },

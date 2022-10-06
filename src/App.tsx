@@ -9,7 +9,6 @@ import { isLightAtom } from "./atoms";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
   html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -27,7 +26,6 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -63,7 +61,7 @@ body {
   color:${(props) => props.theme.desColor};
 }
 h1 {
-  font-family: 'Bungee Shade', cursive;
+  font-family: 'Nabla', cursive;
 }
 * {
   box-sizing: border-box;
