@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "aa9ce0286fa5482c49a6",
-    "url": "/coin-tracker/static/js/main.26efc29f.chunk.js"
+    "revision": "41b97a86f9450b8c009d",
+    "url": "/coin-tracker/static/js/main.bda3c62b.chunk.js"
   },
   {
     "revision": "fef51334688afeaeea89",
@@ -12,7 +12,7 @@ self.__precacheManifest = [
     "url": "/coin-tracker/static/js/2.10eae367.chunk.js"
   },
   {
-    "revision": "9c7714e32228083f4f55b9101f9f33a4",
+    "revision": "08077f9e392ee8a305a81189836e841d",
     "url": "/coin-tracker/index.html"
   }
 ];
