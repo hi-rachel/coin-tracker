@@ -16,6 +16,13 @@ const Container = styled.div`
   margin-bottom: 30px;
 `;
 
+const Footer = styled.footer`
+  text-align: center;
+  color: ${(props) => props.theme.selectColor};
+  margin: 30px 0;
+  font-size: 14px;
+`;
+
 const Header = styled.header`
   margin-top: 30px;
   margin-bottom: 30px;
@@ -60,7 +67,7 @@ const Coin = styled.li`
 `;
 
 const Title = styled.h1`
-  font-size: 50px;
+  font-size: 48px;
 `;
 
 const Loader = styled.div`
@@ -87,8 +94,8 @@ interface ICoin {
 
 export const Toggle = styled.div`
   position: fixed;
-  top: 35px;
-  left: 35px;
+  top: 24px;
+  left: 24px;
 `;
 
 export const ToggleBtn = styled.div`
@@ -107,19 +114,19 @@ function Coins() {
         <title>{`Coins`}</title>
       </Helmet>
       <Header>
-        <Title>Coin List</Title>
+        <Title>Crypto List</Title>
       </Header>
       <Toggle>
         {isLight ? (
           <ToggleBtn onClick={togglelightAtom}>
             <Link to={"/"}>
-              <BsMoonStarsFill size={"30px"} color={"#1C1A27"} />
+              <BsMoonStarsFill size={"28px"} color={"#222"} />
             </Link>
           </ToggleBtn>
         ) : (
           <ToggleBtn onClick={togglelightAtom}>
             <Link to={"/"}>
-              <BsFillSunFill size={"30px"} color={"rgb(255, 217, 19)"} />
+              <BsFillSunFill size={"28px"} color={"rgb(255, 217, 19)"} />
             </Link>
           </ToggleBtn>
         )}
@@ -142,6 +149,11 @@ function Coins() {
             : true}
         </CoinsList>
       )}
+      <Footer>
+        <a href="https://github.com/hi-rachel/coin-tracker" target="_blank">
+          ⓒ2022 Rachel Moon
+        </a>
+      </Footer>
     </Container>
   );
 }
