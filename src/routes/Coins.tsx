@@ -111,7 +111,7 @@ function Coins() {
   return (
     <Container>
       <Helmet>
-        <title>{`Coins`}</title>
+        <title>{`Crypto Tracker`}</title>
       </Helmet>
       <Header>
         <Title>Crypto List</Title>
